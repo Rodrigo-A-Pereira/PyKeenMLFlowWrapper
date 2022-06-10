@@ -10,6 +10,7 @@ def save_model(pipeline_result, save_dir ,model_name, param_tracker=None):
 
 
     save_path=os.path.join(save_dir,f"{model_name}_saved")
+    
     pipeline_result.save_to_directory(save_path)
 
 
@@ -49,7 +50,7 @@ def save_model(pipeline_result, save_dir ,model_name, param_tracker=None):
         mlflow.log_metrics(pipeline_result.metric_results.to_flat_dict())
 
         return mlflow.pyfunc.log_model(
-            artifact_path=model_name,
+            artifact_path=os.path.join(save_dir,model_name),
             python_model=PykeenWrapper(),
             #code_path=["./your_code_path"],
             conda_env=conda_env,
