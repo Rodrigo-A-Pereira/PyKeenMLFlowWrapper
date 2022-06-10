@@ -5,11 +5,11 @@ from sys import version_info
 import torch
 import pykeen
 
-def save_model(pipeline_result, model_name, param_tracker=None):
+def save_model(pipeline_result, save_dir ,model_name, param_tracker=None):
     "Save Pykeen model and register it on MLFlow"
 
 
-    save_path=f"{model_name}_saved"
+    save_path=os.path.join(save_dir,f"{model_name}_saved")
     pipeline_result.save_to_directory(save_path)
 
 
