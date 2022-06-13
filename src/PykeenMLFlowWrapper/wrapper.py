@@ -14,10 +14,10 @@ class PykeenWrapper(mlflow.pyfunc.PythonModel):
 
         import torch
 
-        print(context.artifacts["pykeen_triples_path"])
-        self.model = torch.load(context.artifacts["pykeen_triples_path"])
+        #print(context.artifacts["pykeen_triples_path"])
+        self.model = torch.load(context.artifacts["pykeen_model_path"])
 
-        self.triple_factory = pykeen.triples.TriplesFactory.from_path_binary(context.artifacts["pykeen_model_path"])
+        self.triple_factory = pykeen.triples.TriplesFactory.from_path_binary(context.artifacts["pykeen_triples_path"])
 
     def predict(self, context, model_input):
         """Make Predictions.
